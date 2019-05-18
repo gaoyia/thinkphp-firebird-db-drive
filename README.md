@@ -1,7 +1,7 @@
 # thinkphp-firebird-db-drive
 thinkphp5.1-firebird-数据库驱动
 
-使用方法：将db类放入TP5.1核心目录
+使用方法：将db文件夹放入以下TP5.1核心目录
 ```
 thinkphp\library\think
 ```

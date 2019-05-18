@@ -36,7 +36,7 @@ class Firebird extends Builder
      * @param mixed $limit
      * @return string
      */
-    public function parseLimit($query, $limit)
+    protected function parseLimit($query, $limit)
     {
         $limitStr = '';
         if (!empty($limit)) {
