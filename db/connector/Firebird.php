@@ -51,8 +51,8 @@ class Firebird extends Connection
     {
         $this->initConnect(true);
         list($tableName) = explode(' ', $tableName);
-        $sql= 'SELECT RF.RDB$FIELD_NAME AS FIELD,RF.RDB$DEFAULT_VALUE AS DEFAULT1,RF.RDB$NULL_FLAG AS NULL1,TRIM(T.RDB$TYPE_NAME) || \'(\' || F.RDB$FIELD_LENGTH || \')\' as TYPE FROM RDB$RELATION_FIELDS RF LEFT JOIN RDB$FIELDS F ON (F.RDB$FIELD_NAME = RF.RDB$FIELD_SOURCE) LEFT JOIN RDB$TYPES T ON (T.RDB$TYPE = F.RDB$FIELD_TYPE) WHERE RDB$RELATION_NAME=UPPER(\'' . $tableName . '\') AND T.RDB$FIELD_NAME = \'RDB$FIELD_TYPE\' ORDER By RDB$FIELD_POSITION';
-  		$result = $this->linkID->query($sql);
+        $sql = 'SELECT A.RDB$FIELD_NAME,B.RDB$FIELD_TYPE,B.RDB$FIELD_LENGTH,B.RDB$FIELD_PRECISION,B.RDB$FIELD_SCALE FROM RDB$RELATION_FIELDS A, RDB$FIELDS B WHERE A.RDB$RELATION_NAME = UPPER(\'' . $tableName . '\') AND A.RDB$FIELD_SOURCE = B.RDB$FIELD_NAME ORDER BY A.RDB$FIELD_POSITION';
+  	$result = $this->linkID->query($sql);
         $info   = [];
         if ($result) {
             foreach ($result as $key => $val) {
